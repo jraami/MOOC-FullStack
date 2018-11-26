@@ -1,0 +1,23 @@
+title Notes-sivun sekvenssi
+
+User->Browser: Browsing to URL
+note left of Browser: User browses to /notes
+Browser->Server: GET fullstack-exampleapp.herokuapp.com/notes
+Server->Browser: Status 200, HTML
+Browser->Server: GET main.css
+Browser->Server: GET main.js
+Server->Browser: Status 200, CSS
+Server->Browser: Status 200, JS
+note right of Browser: JS requests GET of /data.json
+Browser->Server: GET data.json
+Server->Browser: Status 200, JSON
+note right of Browser
+  JS parses the JSON response. JS creates UL element
+  of class "notes", and inserts LI with text value of
+  JSON's content key. Finally JS appends UL with the LI.
+end note
+Browser->User: Render HTML
+note left of Browser
+  The HTML appended by JS
+  is rendered to the user.
+end note
